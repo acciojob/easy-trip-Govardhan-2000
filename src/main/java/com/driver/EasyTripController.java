@@ -7,37 +7,43 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-public class ControlerClass {
+public class EasyTripController {
     @Autowired
-    private ServiceClass serviceClass;
+    private AirportService airportService;
+
+    @Autowired
+    private FlightService flightService;
+
+    @Autowired
+    private PassengerService passengerService;
 
     @PostMapping("/addAirport")
     public void addAirport(@RequestBody Airport airport) {
-        serviceClass.addAirport(airport);
+        airportService.addAirport(airport);
     }
 
     @GetMapping("/getAirport/{airportName}")
     public Airport getAirport(@PathVariable String airportName) {
-        return serviceClass.getAirport(airportName);
+        return airportService.getAirport(airportName);
     }
 
     @PostMapping("/addFlight")
     public void addFlight(@RequestBody Flight flight) {
-        serviceClass.addFlight(flight);
+        flightService.addFlight(flight);
     }
 
     @GetMapping("/getFlight/{flightId}")
     public Flight getFlight(@PathVariable int flightId) {
-        return serviceClass.getFlight(flightId);
+        return flightService.getFlight(flightId);
     }
 
     @PostMapping("/addPassenger")
     public void addPassenger(@RequestBody Passenger passenger) {
-        serviceClass.addPassenger(passenger);
+        passengerService.addPassenger(passenger);
     }
 
     @GetMapping("/getPassenger/{passengerId}")
     public Passenger getPassenger(@PathVariable int passengerId) {
-        return serviceClass.getPassenger(passengerId);
+        return passengerService.getPassenger(passengerId);
     }
 }
